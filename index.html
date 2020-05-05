@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" co, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<body>
+    <div class="quiz-container">
+        <div class="question-number">
+            <h3>Question <span class="question-num-value">1</span>of <span class="total-question">3</span></h3>
+        </div>
+        <div class="question"> 
+            How do you declare a Javascript variable?
+        </div>
+        <div class="options">
+            <div id="0" class="option1" onClick="check(this)">variable carName;</div>
+            <div id="1" class="option2" onClick="check(this)">var carName;</div>
+            <div id="2" class="option3" onClick="check(this)">v carName;</div>
+            <div id="3" class="option4" onClick="check(this)">none of these</div>
+        </div>
+        <div class="button">
+            <button type="button" class="btn">Next</button>
+        </div>
+        <div class="answers-tracker">
+            
+        </div>
+    </div>
+
+    <div class="quiz-over">
+        <div class="box">
+            <h1>
+                Good Try!<br>
+                You Got <span class="correct-answers">3</span> out of <span class="total-question">10</span> answers correct! <br>
+                That's <span class="percentage">30%</span> 
+            </h1>
+            <button type="button" onClick="tryAgain()">Try Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
