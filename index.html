@@ -4,38 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" co, initial-scale=1.0">
     <title>Quiz App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">    
 </head>
 <body>
-    <div class="quiz-container">
-        <div class="question-number">
-            <h3>Question <span class="question-num-value">1</span>of <span class="total-question">3</span></h3>
+    <div class="main-div">
+        <div class="quiz-app">
+        <div class="start" id="start" style="display: block;">
+        <img src="img/pencil.png" height="120px" width="120px" class="il"/>
+        <h1 class="app">Quiz App</h1>
+        
         </div>
-        <div class="question"> 
-            How do you declare a Javascript variable?
-        </div>
-        <div class="options">
-            <div id="0" class="option1" onClick="check(this)">variable carName;</div>
-            <div id="1" class="option2" onClick="check(this)">var carName;</div>
-            <div id="2" class="option3" onClick="check(this)">v carName;</div>
-            <div id="3" class="option4" onClick="check(this)">none of these</div>
-        </div>
-        <div class="button">
-            <button type="button" class="btn">Next</button>
-        </div>
-        <div class="answers-tracker">
+          <div class="quiz" id="quiz-secreen" style="display:none;">          
+            <div class="time-bar">
+            <div class="time-left" id="timeLeft">
             
-        </div>
-    </div>
+            </div>
+          </div>
+          <div class="question-no">
+            <h3 class="q-text">Questions<span id="currentQuestion"> 1</span> / <span id="totalQuestions"> 10</span></h3>
+            <h3 id="dots">.............................................................</h3>
+       </div>
+          <div class="qus">
+            <h1 id="question">Who is the first child of the john doe?</h1>
 
-    <div class="quiz-over">
-        <div class="box">
-            <h1>
-                Good Try!<br>
-                You Got <span class="correct-answers">3</span> out of <span class="total-question">10</span> answers correct! <br>
-                That's <span class="percentage">30%</span> 
-            </h1>
-            <button type="button" onClick="tryAgain()">Try Again</button>
+          </div>
+          <div class="choices">
+            <button class="btn" id="opt1">Mark Angel</button>
+            <button class="btn" id="opt2">Mark Angel</button>
+            <button class="btn" id="opt3">Mark Angel</button>
+            <button class="btn" id="opt4">Mark Angel</button>
+          </div>
+          <div class="next-btn">
+            <button id="next">Next</button>
+          </div>
+        </div>
+        <div class="result" id="resultSecreen" style="display: none;">
+           <img src="images/res.png" height="120px" width="120px" class="il"/>
+        <h1 class="app"> Score : <span id="score">6</span></h1>
+
+
+        </div>
         </div>
     </div>
 

@@ -1,148 +1,139 @@
-const options = document.querySelector(".options").children;
-const questionNumberSpan = document.querySelector(".question-num-value");
-const totalQuestionSpan = document.querySelector(".total-question"); 
-const question=document.querySelector(".question");
-const op1 = document.querySelector(".option1");
-const op2 = document.querySelector(".option2");
-const op3 = document.querySelector(".option3");
-const op4 = document.querySelector(".option4");
-let questionIndex;
-let index = 0;
-let myArray=[];
-let myArr=[];
-
-// questions and options answers
-
-const questions = [
-    {
-        q: 'How do you call a function named "myFunction"?'
-        options: ['myFunction()','call myFunction()','call function myFunction()','all of the above'],
-        answer:0
-    },
-    {
-        q: 'How do you call a function named "myFunction"?'
-        options: ['myFunction()','call myFunction()','call function myFunction()','all of the above'],
-        answer:0
-    },
-    {
-        q: 'How do you call a function named "myFunction"?'
-        options: ['myFunction()','call myFunction()','call function myFunction()','all of the above'],
-        answer:0
-    },
-    {
-        q: 'How do you call a function named "myFunction"?'
-        options: ['myFunction()','call myFunction()','call function myFunction()','all of the above'],
-        answer:0
-    },
-    {
-        q: 'How do you call a function named "myFunction"?'
-        options: ['myFunction()','call myFunction()','call function myFunction()','all of the above'],
-        answer:0
-    }
-]
-
-// set questions and options and question number
-totalQuestionSpan.innerHTML = questions.length;
-function load() {
-    questionNumberSpan.innerHTML=index+1;
-    question.innerHTML = questions[questionIndex].q;
-    op1.innerHTML = questions[questionIndex].options[0];
-    op2.innerHTML = questions[questionIndex].options[1];
-    op3.innerHTML = questions[questionIndex].options[2];
-    op4.innerHTML = questions[questionIndex].options[3];
-    index++;
-
-}
-
-function check(element) {
-   // console.log(element.id);
-   if(element.id==questions[questionIndex].answer) {
-    element.classList.add("correct");
-   }
-   else {
-    element.classList.add("wrong");
-   }
-   disabledOptions()
-}
-
-function disabledOptions() {
-    for(let i=0; i<options.length; i++) {
-        options[i].classList.add('disabled');
-        if(options[i].id==questions[questionIndex].answer) {
-            options[i].classList.add("correct");
+var currentQuestion=0;
+    var totalScore=0;
+    var cQuestion=document.getElementById('currentQuestion');
+    var totalQuestions=document.getElementById('totalQuestions');
+    var splashSecreen=document.getElementById('start');
+    var quizScreen=document.getElementById('quiz-secreen');
+    var x=0;
+    var resultSecreen=document.getElementById('resultSecreen');
+    var timeLeft=document.getElementById('timeLeft');
+    var score=document.getElementById('score');
+    var question=document.getElementById('question');
+    var opt1=document.getElementById('opt1');
+    var opt2=document.getElementById('opt2');
+    var opt3=document.getElementById('opt3');
+    var opt4=document.getElementById('opt4');
+    var btn=document.getElementsByClassName('btn');
+    var next=document.getElementById('next');
+    var quizQuestions=[
+      {
+        question:"HTML is a ... ",
+        choice1:"Programming Language",
+        choice2:"Markup Language",
+        choice3:"Rebotic Language",
+        choice4:"Machine Language",
+        ans:"Markup Language",
+      },
+         {
+        question:"CSS stands for ... ",
+        choice1:"Cascading Style Sheet",
+        choice2:"Cascading Stylish Sheet",
+        choice3:"Case Senstive Sheet",
+        choice4:"Cascading Sence Sheet",
+        ans:"Cascading Style Sheet",
+      },
+         {
+        question:"Number of Headings available in HTML",
+        choice1:"4",
+        choice2:"6",
+        choice3:"7",
+        choice4:"8",
+        ans:"6",
+      },
+         {
+        question:"Famous Language use for AI...?",
+        choice1:"PHP",
+        choice2:"Python",
+        choice3:"JavaScript",
+        choice4:"Java",
+        ans:"Python",
+      },
+         {
+        question:"<ul> Tag is used for....",
+        choice1:"Ordred List",
+        choice2:"Unordred List",
+        choice3:"List Item",
+        choice4:"List",
+        ans:"Unordred List",
+      }
+    ];
+    function nextQuestion(no){
+    Inter(300);
+    cQuestion.textContent=" "+(no+1);
+    totalQuestions.textContent=" "+quizQuestions.length;
+    console.log("number "+no);
+    question.textContent=quizQuestions[no].question;
+    opt1.textContent=quizQuestions[no].choice1;
+    opt2.textContent=quizQuestions[no].choice2;
+    opt3.textContent=quizQuestions[no].choice3;
+    opt4.textContent=quizQuestions[no].choice4;
+  }
+    var z=setInterval(function(){
+        if(x==1){
+          clearInterval(z);
+          splashSecreen.style.display="none";
+          quizScreen.style.display="block";
+          nextQuestion(currentQuestion);
         }
-    }
-}
-
-function enableOptions() {
-    for(let i=0; i<options.length; i++) {
-        options[i].classList.remove("disabled", "correct", "wrong");
-    }
-}
-
-function validate() {
-    if(!options[0].classList.contains("disabled")) {
-        alert("Please select one option")
-    }
-    else {
-        enableOptions();
-        randomQuestion();
-    }
-}
-
-function next() {
-    validate();
-}
-
-function randomQuestion(){
-    let randomNumber = Math.floor(Math.random()*questions.length);
-    let hitDuplicate=0;
-        if(index==questions.length) {
-            quizOver();
+        x++;
+    },2000);
+    for(var i=0;i<btn.length;i++){
+      btn[i].onclick=function(){
+        if(this.textContent==quizQuestions[currentQuestion].ans){
+            totalScore++;
+            if(currentQuestion<4){
+            clearInterval(bar);
+            currentQuestion++;
+            nextQuestion(currentQuestion);
+            console.log(totalScore);
+            }else{
+              endSecreen();
+            }
         }
-        else {
-            if(myArray.length>0) {
-                for(let i=0; i<myArray.length; i++) {
-                    if(myArray[i]==randomNumber){
-                        hitDuplicate=1;
-                        break;
-                    }
-                }
-                if(hitDuplicate==1) {
-                    randomQuestion();
-                }
-                else {
-                    questionIndex=randomNumber;
-                    load();
-                    myArr.push(questionIndex);
-                }
+        else{
+          if(currentQuestion<4){
+            currentQuestion++;
+            clearInterval(bar);
+            nextQuestion(currentQuestion);
+            console.log(totalScore);
+            }else{
+              endSecreen();
             }
-            if(myArray.length==0) {
-                questionIndex=randomNumber;
-                load();
-                myArr.push(questionIndex);
-            }
-        
-        myArray.push(randomNumber);
-        
+        }
+      }
     }
-}
-
-function answerTracker() {
-    for(let i = 0; i<questions.length; i++) {
-        const div = document.createElement("div")
-            answerTrackerContainer.appendChild(div);
+    var bar;
+    function endSecreen(){
+      quizScreen.style.display="none";
+      resultSecreen.style.display="block";
+      score.textContent=totalScore;
     }
-}
-
-function updateAnswerTracker(classNam) {
-    answerTrackerContainer.children[index-1].classList.add(classNam);
-}
-
-function quizOver() {
-    
-}
-
-window.onload=function() {
-    randomQuestion();
-}
+    function Inter(set){
+    var statusTime=set;
+    timeLeft.style.width=statusTime+"px";
+    bar=setInterval(function(){
+     if(statusTime==0){
+         clearInterval(bar); 
+          if(currentQuestion<4){
+            currentQuestion++;
+            nextQuestion(currentQuestion);
+          }
+          else{
+            endSecreen();
+          } 
+           
+        }
+        timeLeft.style.width=statusTime+"px";
+        statusTime=statusTime-30;
+    },1000); 
+   }
+  next.onclick=function(){
+    if(currentQuestion<4){
+    currentQuestion++;
+    nextQuestion(currentQuestion);
+    }
+    else{
+      endSecreen();
+    }
+   
+  }
